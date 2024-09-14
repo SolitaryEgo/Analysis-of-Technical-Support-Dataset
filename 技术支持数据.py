@@ -77,7 +77,7 @@ peak_time_chart.render('peak_time.html')
 # 按月份和主题分组，统计票据数量
 topic_trends = df.groupby(['Month', 'Topic']).size().unstack(fill_value=0)
 
-# Trends of Ticket Topics Over Time
+# 票务主题的长期趋势
 line_chart = Line()
 line_chart.add_xaxis(topic_trends.index.astype(str).tolist())
 for topic in topic_trends.columns:
@@ -91,7 +91,7 @@ line_chart.set_global_opts(
 
 line_chart.render('topic_trends.html')
 
-# Ticket Count by Source
+# 按来源分列的票数
 source_summary = df['Source'].value_counts()
 
 bar_chart = Bar()
@@ -106,7 +106,7 @@ bar_chart.set_global_opts(
 
 bar_chart.render('source_summary.html')
 
-# Ticket Submissions by Location
+# 按地点提交的门票
 scatter_chart = Scatter()
 scatter_chart.add_xaxis(df['Longitude'].tolist())
 scatter_chart.add_yaxis("Ticket Submissions", df['Latitude'].tolist(), symbol_size=10)
